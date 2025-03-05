@@ -108,7 +108,7 @@ export default function App() {
       wsUrl.searchParams.append('channels', '1');
       
       // Add optional parameters based on user settings
-      wsUrl.searchParams.append('interim_results', interimResults ? 'true' : 'false');
+      wsUrl.searchParams.append('interim_results', 'false');
       wsUrl.searchParams.append('punctuate', punctuate ? 'true' : 'false');
       wsUrl.searchParams.append('smart_format', smartFormat ? 'true' : 'false');
       
@@ -373,8 +373,8 @@ export default function App() {
           addLog(`Processing chunk ${streamInterval}: URI=${uri}`);
           
           // Only process if we've recorded enough audio - increase minimum duration from 100ms to 300ms
-          if (status.durationMillis < 300) {
-            addLog(`Recording duration too short (${status.durationMillis}ms), waiting for at least 300ms...`);
+          if (status.durationMillis < 500) {
+            addLog(`Recording duration too short (${status.durationMillis}ms), waiting for at least 500ms...`);
             return;
           }
           
